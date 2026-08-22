@@ -105,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
 # Anime Terminal Banner
 echo "ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧ Code Session Active" | lolcat
 
@@ -124,34 +125,6 @@ echo -e "${TEXT_GLOW}(Konnichiwa! Okaerinasai, ${USER_NAME_EN}-san!)${RESET}"
 echo -e "${MIKU_BLUE}⚡ [ VOCALOID-01 ACTIVE ] :: Ready to code something legendary. ⚡${RESET}"
 echo ""
 
+export PATH="$PATH:$HOME/.local/bin"
 
-# Created by `pipx` on 2026-08-18 16:53:17
-export PATH="$PATH:/home/muhammad-ibrahim/.local/bin"
-alias aiscream='cd ~/Music/AiScreamProject && source venv/bin/activate && python aiscream.py'
-badapple() {
-    local proj_dir="$HOME/Music/BadAppleProject"
-    
-    if [ ! -d "$proj_dir/ascii_frames" ]; then
-        echo "Error: ASCII frames not found in $proj_dir/ascii_frames"
-        return 1
-    fi
-
-    tput civis
-    clear
-
-    ffplay -nodisp -autoexit -loglevel quiet "$proj_dir/audio.opus" &
-    local audio_pid=$!
-
-    trap "kill $audio_pid 2>/dev/null; tput cnorm; clear; return" INT TERM
-
-    for f in $(ls -1 "$proj_dir/ascii_frames/"*.txt | sort -V); do
-        printf "\033[H"
-        cat "$f"
-        sleep 0.0333
-    done
-
-    tput cnorm
-}
 [ -f ~/.miku_terminal.sh ] && source ~/.miku_terminal.sh
-alias play-game="python3 ~/miku_adventure/game.py"
-alias play-game="cd ~/miku_adventure && python3 game.py && cd - >/dev/null"
