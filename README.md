@@ -2,6 +2,8 @@
 
 A fully custom-themed Linux terminal environment — teal/Hatsune Miku aesthetic, Japanese voice greetings, ASCII startup banner, and shell utility functions layered on top of zsh/bash.
 
+![Miku OS terminal splash screen](assets/miku-splash.png)
+
 ## What's included
 
 - **Teal-themed shell prompt and startup banner** (zsh + bash)
