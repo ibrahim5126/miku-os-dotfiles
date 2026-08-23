@@ -168,3 +168,25 @@ badapple() {
 }
 
 alias play-game="cd ~/miku_adventure && python3 game.py && cd - >/dev/null"
+
+takeshi() {
+    local proj_dir="$HOME/Music/TakeshiProject"
+
+    if [ ! -d "$proj_dir/ascii_frames" ]; then
+        echo "Error: ascii_frames not found in $proj_dir"
+        return 1
+    fi
+
+    python3 "$proj_dir/play.py" --dir "$proj_dir" --audio audio.mp3 --fps 15
+}
+
+badapple() {
+    local proj_dir="$HOME/Music/BadAppleProject"
+
+    if [ ! -d "$proj_dir/ascii_frames" ]; then
+        echo "Error: ascii_frames not found in $proj_dir"
+        return 1
+    fi
+
+    python3 "$HOME/Music/TakeshiProject/play.py" --dir "$proj_dir" --audio audio.opus --fps 30
+}
