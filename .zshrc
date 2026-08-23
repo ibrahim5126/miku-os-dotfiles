@@ -139,3 +139,32 @@ takeshi() {
 
     (cd "$proj_dir" && python3 play.py)
 }
+
+alias scream='cd ~/Music/AiScreamProject && source venv/bin/activate && python main.py'
+
+badapple() {
+    local proj_dir="$HOME/Music/BadAppleProject"
+
+    if [ ! -d "$proj_dir/ascii_frames" ]; then
+        echo "Error: ASCII frames not found in $proj_dir/ascii_frames"
+        return 1
+    fi
+
+    tput civis
+    clear
+
+    ffplay -nodisp -autoexit -loglevel quiet "$proj_dir/audio.opus" &
+    local audio_pid=$!
+
+    trap "kill $audio_pid 2>/dev/null; tput cnorm; clear; return" INT TERM
+
+    for f in $(ls -1 "$proj_dir/ascii_frames/"*.txt | sort -V); do
+        printf "\033[H"
+        cat "$f"
+        sleep 0.0333
+    done
+
+    tput cnorm
+}
+
+alias play-game="cd ~/miku_adventure && python3 game.py && cd - >/dev/null"
