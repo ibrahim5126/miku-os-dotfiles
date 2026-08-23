@@ -128,3 +128,14 @@ echo ""
 export PATH="$PATH:$HOME/.local/bin"
 
 [ -f ~/.miku_terminal.sh ] && source ~/.miku_terminal.sh
+
+takeshi() {
+    local proj_dir="$HOME/Music/TakeshiProject"
+
+    if [ ! -d "$proj_dir/ascii_frames" ]; then
+        echo "Error: ascii_frames not found in $proj_dir"
+        return 1
+    fi
+
+    (cd "$proj_dir" && python3 play.py)
+}
